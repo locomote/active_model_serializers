@@ -13,7 +13,7 @@ module ActiveModelSerializers
 
         def serializable_hash(options = {})
           pages_from.each_with_object({}) do |(key, value), hash|
-            params = query_parameters.merge(page: { number: value, size: collection.size }).to_query
+            params = query_parameters.merge(page: { number: value, size: collection.per_page }).to_query
 
             hash[key] = "#{url(options)}?#{params}"
           end
